@@ -1,0 +1,120 @@
+>>>Manejo de archivos
+
+  -- La función clave para trabajar con archivos en Python es el open()Función.
+  -- El open()La función toma dos parámetros; Nombre de archivo, y modo.
+
+Hay cuatro métodos (modos) diferentes para abrir un archivo:
+
+  +++ "r"- Leer - Valor predeterminado. Abre un Archivo para lectura, error si el archivo no existe
+  
+  +++ "a"- Agregar - Abre un archivo para Anexando, crea el archivo si no existe
+  
+  +++ "w"- Escribir - Abre un archivo para escribir, Crea el archivo si no existe
+  
+  +++ "x"- Crear - Crea el archivo especificado, devuelve Un error si el archivo existe
+  
+  +++ Además puede especificar si el archivo debe ser manejado como modo binario o de texto
+  
+  +++ "t"- Texto - Valor predeterminado. Modo de texto
+  
+  +++ "b"- Binario - Modo binario (p. ej. Imágenes)
+
+>>>Sintaxis
+
+  +++ Para abrir un archivo para leerlo es suficiente para especificar el nombre del archivo:
+     f = open("demofile.txt")
+  
+  +++ El código de arriba es el mismo que:
+     f = open("demofile.txt", "rt")
+
+>>>Abrir un archivo en el servidor
+
+  +++ Supongamos que tenemos el siguiente archivo, ubicado en la misma carpeta que Python:
+  
+  demofile.txt
+  Hello! Welcome to demofile.txt
+  This file is for testing purposes.
+  Good Luck!
+
+  +++ Para abrir el archivo, utilice el archivo integrado open()Función.
+
+  +++ El open()La función devuelve un objeto de archivo, que tiene un read()Método para leer el contenido del archivo:
+    +++ Ejemplo
+
+    f = open("demofile.txt")
+    print(f.read()) 
+
+  +++ Si el archivo se encuentra en una ubicación diferente, tendrá que especificar la ruta del archivo, Así:
+   +++ Ejemplo
+
+  Abra un archivo en una ubicación diferente:
+
+  f = open("D:\\myfiles\welcome.txt")
+  print(f.read()) 
+
+  +++ Usando el "with" Declaración
+
+    +++También puede utilizar el with Declaración al abrir un archivo:
+      +++Ejemplo 
+
+      Usando el with Palabra clave:
+
+      with open("demofile.txt") as f:
+        print(f.read()) 
+
+ +++ Entonces usted no tiene que preocuparse de cerrar sus archivos, el with La declaración se encarga de eso.
+  Cerrar Archivos
+  
+    Es una buena práctica cerrar siempre el archivo cuando haya terminado con él.  
+    Si no está utilizando el with Declaración, debe escribir una declaración de cierre para poder cerrar el archivo:
+    +++ Ejemplo
+    
+    Cierre el archivo cuando haya terminado con él:
+
+    f = open("demofile.txt")
+    print(f.readline())
+    f.close() 
+
++++ Lea solo partes del archivo
+
+    Por defecto el read()El método devuelve todo el texto, pero también puede especificar cuántos caracteres desea devolver:
+    +++Ejemplo
+    
+    Devuelve los 5 primeros caracteres del archivo:
+
+    with open("demofile.txt") as f:
+      print(f.read(5)) 
+
++++ Escribir a un archivo existente
+
+  Para escribir en un archivo existente, debe agregar un parámetro al open()Función:
+  
+  "a"- Anexar - se adjuntará al final del archivo
+  
+  "w"- Escribir - sobrescribirá cualquier contenido existente
+    +++ Ejemplo
+     
+    Abra el archivo "demofile.txt" y agregue contenido al archivo:
+
+    with open("demofile.txt", "a") as f:
+      f.write("Now the file has more content!")
+    
+    #open and read the file after the appending:
+    with open("demofile.txt") as f:
+      print(f.read()) 
+
++++ Sobrescribir El Contenido Existente
+  
+  Para sobrescribir el contenido existente en el archivo, utilice el wParámetro:
+    Ejemplo
+    
+    Abra el archivo "demofile.txt" y sobrescriba el contenido:
+
+    with open("demofile.txt", "w") as f:
+      f.write("Woops! I have deleted the content!")
+    
+    #open and read the file after the overwriting:
+    with open("demofile.txt") as f:
+      print(f.read()) 
+    
+  
